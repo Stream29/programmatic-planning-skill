@@ -1,6 +1,6 @@
 ---
 name: programmatic-planning
-description: Use when expressing, executing, or tracking task plans as pseudocode scripts.
+description: Use to plan for any type of work.
 ---
 
 # Programmatic Planning
@@ -22,6 +22,8 @@ description: Use when expressing, executing, or tracking task plans as pseudocod
 Task context, state needed to resume, inline checks, and subtask links.
 ```
 
+**This is only the simplest example. Planing with rich control flows is suggested.**
+
 ## Execution State
 
 - Bold the current executing or suspended statement in each active invocation or coroutine; concurrent branches may have multiple bold positions.
@@ -37,8 +39,13 @@ Task context, state needed to resume, inline checks, and subtask links.
 - `} else {`
   - `Verify existing schema integrity`()
 - `}`
-- `for (module in modules) {`
-  - `Compile and test module`(module)
+- `try {`
+    - `for (module in modules) {`
+      - `Compile and test module`(module)
+    - `}`
+- `} catch (CompileOrTestFailed) {`
+    - `Report compile or test failure to the user`()
+    - `goto fix`
 - `}`
 - `while (hasPendingQueue()) {`
   - `Process next message`()
